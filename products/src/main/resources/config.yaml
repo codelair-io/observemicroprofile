@@ -10,4 +10,4 @@ kumuluzee:
   logs:
     loggers:
       - name: ''
-        level: TRACE
+        level: DEBUG
