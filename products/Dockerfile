@@ -7,6 +7,6 @@ RUN mvn -B -s settings.xml package
 FROM registry.hub.docker.com/library/openjdk:11
 
 WORKDIR /opt/app
-COPY --from=builder /build/target/template.jar ./
+COPY --from=builder /build/target/products.jar ./
 
-CMD [ "java", "-jar", "template.jar" ]
+CMD [ "java", "-jar", "products.jar" ]
