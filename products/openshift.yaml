@@ -2,14 +2,14 @@
 apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
-  name: template
+  name: products
   namespace: observemicroprofile
 
 ---
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: template
+  name: products
   namespace: observemicroprofile
 spec:
   failedBuildsHistoryLimit: 1
@@ -17,12 +17,12 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: template:latest
+      name: products:latest
   source:
     type: Git
     git:
       uri: https://github.com/codelair-io/observemicroprofile.git
-    contextDir: template
+    contextDir: products
   strategy:
     dockerStrategy:
       dockerfilePath: Dockerfile
@@ -32,7 +32,7 @@ spec:
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
-  name: template
+  name: products
   namespace: observemicroprofile
 spec:
   triggers:
@@ -40,21 +40,21 @@ spec:
     - imageChangeParams:
         automatic: true
         containerNames:
-          - template
+          - products
         from:
           kind: ImageStreamTag
-          name: template:latest
+          name: products:latest
       type: ImageChange
   selector:
-    app: template
+    app: products
   replicas: 1
   template:
     metadata:
       labels:
-        app: template
+        app: products
     spec:
       containers:
-        - name: template
+        - name: products
           image: ""
           ports:
             - containerPort: 8080
@@ -63,11 +63,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: template
+  name: products
   namespace: observemicroprofile
 spec:
   selector:
-    app: template
+    app: products
   ports:
     - protocol: TCP
       port: 8080
@@ -77,12 +77,12 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: template
+  name: products
   namespace: observemicroprofile
 spec:
   selector:
     matchLabels:
-      app: template
+      app: products
   endpoints:
     - path: /metrics
       scheme: http
@@ -92,12 +92,12 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: template
+  name: products
   namespace: observemicroprofile
 spec:
   path: /api
   to:
     kind: Service
-    name: template
+    name: products
   port:
     targetPort: 8080
