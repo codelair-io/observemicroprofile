@@ -1,5 +1,7 @@
 package io.codelair.observemicroprofile;
 
+import org.eclipse.microprofile.opentracing.Traced;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -12,6 +14,7 @@ import java.util.UUID;
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
   @GET
+  @Traced(operationName = "products.list")
   public List<Product> fetch() {
     return Arrays.asList(
         new Product(UUID.randomUUID(), "Produkt ett"),

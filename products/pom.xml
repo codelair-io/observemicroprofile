@@ -57,5 +57,11 @@
       <groupId>com.kumuluz.ee</groupId>
       <artifactId>kumuluzee-microProfile-3.3</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.microprofile.opentracing</groupId>
+      <artifactId>microprofile-opentracing-api</artifactId>
+      <version>3.0</version>
+    </dependency>
+
   </dependencies>
 </project>
