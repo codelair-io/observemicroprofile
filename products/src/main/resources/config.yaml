@@ -7,3 +7,7 @@ kumuluzee:
       #endpoint: /api/traces
 #      propagation: jaeger
       traceid-128bit: true
+  logs:
+    loggers:
+      - name: ''
+        level: TRACE
