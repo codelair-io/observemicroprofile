@@ -2,7 +2,7 @@ kumuluzee:
   opentracing:
     jaeger:
       service-name: KumuluzEE project # if not set kumuluzee.name value is used
-      agent-host: otel-collector.obs.svc.cluster.local # default agent host
+      agent-host: otel-agent.obs.svc.cluster.local # default agent host
       agent-port: 14268 # default agent port
       #endpoint: /api/traces
 #      propagation: jaeger
