@@ -1,5 +1,6 @@
 package io.codelair.observemicroprofile;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.ws.rs.GET;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class Resource {
   @GET
   @Traced(operationName = "products.list")
+  @Counted(name = "count_vlad_tepes")
   public List<Product> fetch() {
     return Arrays.asList(
         new Product(UUID.randomUUID(), "Produkt ett"),
